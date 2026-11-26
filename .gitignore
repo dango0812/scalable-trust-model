@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Training outputs: checkpoints, adapters and runs belong in model storage, not in git
+/runs/
+/checkpoints/
+/adapters/
+
+# Coverage reports
+.coverage
+.coverage.*
+htmlcov/
+
+# Property-based testing scratch data
+.hypothesis/

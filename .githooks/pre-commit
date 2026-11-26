@@ -1,0 +1,11 @@
+#!/bin/sh
+# Block commits on main and on branches that break the naming convention.
+sh scripts/check-branch-name.sh || exit 1
+
+# Lint and format-check only the staged Python files; pre-push and CI run the full suite.
+staged_py=$(git diff --cached --name-only --diff-filter=ACMR -- '*.py')
+[ -z "$staged_py" ] && exit 0
+
+# shellcheck disable=SC2086 # word splitting of the file list is intended
+sh scripts/uv.sh run --quiet ruff check $staged_py &&
+  sh scripts/uv.sh run --quiet ruff format --check $staged_py
